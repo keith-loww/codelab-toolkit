@@ -131,6 +131,11 @@ const config: Config = {
             defaultMode: "dark",
             disableSwitch: true,
         },
+        docs: {
+            sidebar: {
+                hideable: true,
+            },
+        },
     } satisfies Preset.ThemeConfig,
 
     plugins: [
