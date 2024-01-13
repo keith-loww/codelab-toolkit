@@ -1,10 +1,9 @@
 ---
 title: useContext Hook
-description: Another Way to Share Data 
-image: img/bamboo.png
+description: Another Way to Share Data
 ---
 
-import Embed from '@site/src/components/Embed'
+import Embed from "@site/src/components/Embed";
 
 # useContext Hook: Another Way to Share Data
 
@@ -30,24 +29,24 @@ By using `useContext`, components can access shared data directly from the cont
 Example:
 
 ```jsx
-import { createContext, useContext } from 'react';
+import { createContext, useContext } from "react";
 
 // Create a context
 const MyContext = createContext();
 
 // Create a component that uses the context
 function MyComponent() {
-  const value = useContext(MyContext);
-  return <div>{value}</div>;
+    const value = useContext(MyContext);
+    return <div>{value}</div>;
 }
 
 // Create a parent component that provides the context value
 function ParentComponent() {
-  return (
-    <MyContext.Provider value="Hello from context!">
-      <MyComponent />
-    </MyContext.Provider>
-  );
+    return (
+        <MyContext.Provider value="Hello from context!">
+            <MyComponent />
+        </MyContext.Provider>
+    );
 }
 ```
 
@@ -61,8 +60,8 @@ This example has several important components:
 
 `MyContext` is a context that returns two things:
 
-- `text` a string
-- `setText` a function to change said string
+-   `text` a string
+-   `setText` a function to change said string
 
 `MyContextProvider`, a React component that provides its `children` with the `MyContext` context
 
@@ -70,7 +69,7 @@ This example has several important components:
 
 `Buttons`, a React component that displays two buttons, which when clicked, sets the `text` in the `MyContext` context to different strings
 
-- It does this by using `setText` which we defined before
+-   It does this by using `setText` which we defined before
 
 ### `useContext` uses the closest context in the tree
 
@@ -80,7 +79,7 @@ When you use `useContext`, React will look up the component tree to find the cl
 
 ## When to use `useContext`
 
-You should use `useContext` when you have data or functionality that needs to be shared across multiple components in your application. By using a context, you can avoid the need to pass props down through multiple levels of components, which can make your code more concise and easier to manage. 
+You should use `useContext` when you have data or functionality that needs to be shared across multiple components in your application. By using a context, you can avoid the need to pass props down through multiple levels of components, which can make your code more concise and easier to manage.
 
 `useContext` is particularly useful when you have a complex component hierarchy and need to share data or functionality between components that are not directly related. However, it's important to note that overusing context can make your code harder to understand and maintain, so it's important to use it judiciously and only when it makes sense for your specific use case.
 
@@ -137,7 +136,7 @@ function App() {
     return (
         <>
             <div className="place flex h-full min-h-screen w-full flex-wrap items-center justify-center gap-5 bg-zinc-800">
-		            <Card text="Hello"/>
+                <Card text="Hello" />
                 <Card text="World" />
             </div>
         </>
@@ -155,19 +154,19 @@ While it is a useful tool for data that is used on a wider scale, it is importan
 
 `PostsContext` defines the context being used to display/change the posts, as well as a provider for this context.
 
-- Found in `src/lib/store`
-- Defines `posts` which contains all the posts
-- Defines `setPosts` which allows the changing of the posts
+-   Found in `src/lib/store`
+-   Defines `posts` which contains all the posts
+-   Defines `setPosts` which allows the changing of the posts
 
 `Posts` maps all the `posts` in the context and display them in a `PostCard` component
 
-- Extracts `post` from the context using `useContext`
-- Found in `src/components`
+-   Extracts `post` from the context using `useContext`
+-   Found in `src/components`
 
 `PostCard` a component that displays the post, and allows the user to delete the post from the context
 
-- Extracts `setPosts` from the context using `useContext`
-- Uses `setPosts` to remove the post from the context when the delete button is pressed
+-   Extracts `setPosts` from the context using `useContext`
+-   Uses `setPosts` to remove the post from the context when the delete button is pressed
 
 `main.tsx` has been changed to wrap `App` in a `PostsProvider` to allow for the internal components to use the context
 
