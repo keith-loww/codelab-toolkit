@@ -85,8 +85,8 @@ const config: Config = {
                     title: "Docs",
                     items: [
                         {
-                            label: "Tutorial",
-                            to: "/docs/intro",
+                            label: "Guide",
+                            to: "/docs/guide",
                         },
                     ],
                 },
@@ -94,16 +94,16 @@ const config: Config = {
                     title: "Socials",
                     items: [
                         {
-                            label: "Stack Overflow",
-                            href: "https://stackoverflow.com/questions/tagged/docusaurus",
+                            label: "Instagram",
+                            href: "https://www.instagram.com/codelabdavis/",
                         },
                         {
-                            label: "Discord",
-                            href: "https://discordapp.com/invite/docusaurus",
+                            label: "LinkedIn",
+                            href: "https://www.linkedin.com/company/codelabdavis/",
                         },
                         {
-                            label: "Twitter",
-                            href: "https://twitter.com/docusaurus",
+                            label: "Medium",
+                            href: "https://codelabdavis.medium.com/",
                         },
                     ],
                 },
