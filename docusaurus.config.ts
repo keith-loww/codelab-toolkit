@@ -60,8 +60,8 @@ const config: Config = {
         navbar: {
             title: "CodeLab Toolkit",
             logo: {
-                alt: "My Site Logo",
-                src: "img/logo.svg",
+                alt: "CodeLab Icon",
+                src: "img/codelab-icon.png",
             },
             items: [
                 {
