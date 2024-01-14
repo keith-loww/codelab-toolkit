@@ -13,9 +13,9 @@ import Embed from "@site/src/components/Embed";
 
 `useReducer` allows you to control how your data or state can be interacted with. For example, if you have a reducer function that only allows the user to increment or decrement a counter, then you can make it so that the developer cannot accidentally set the counter to a negative number.
 
-## How to use useReducer
+## How to use `useReducer`
 
-# Defining a Reducer
+### Defining a Reducer
 
 First, we need to define a reducer, which is a function that takes two arguments, `state` and `action`
 
@@ -54,7 +54,7 @@ To use a reducer in a component, we can use the `useReducer` hook:
 ``` jsx
 const [count, dispatch] = useReducer(countReducer, 0);
 ```
-The 0 here is the initial value of the reducer’s state.
+`The 0 here is the initial value of the reducer’s state`.
 
 Then, we can use the dispatch to change the state as such:
 
@@ -72,7 +72,7 @@ const onIncrementPress = () => {
 
 <Embed src="https://keith-loww.github.io/sandpack-test/#/usereducer/counter" />
 
-## Using a Context with useReducer
+## Using a Context with `useReducer`
 
 Much like `useState`, `useReducer`'s state and dispatch functions are confined to the component that they are defined in. Because of this, if you created two components that use the same reducer…
 
