@@ -1,0 +1,186 @@
+---
+title: useReducer Hook
+description: A Safe Way to Interact with Data
+---
+
+import Embed from "@site/src/components/Embed";
+
+# useReducer Hook: A Safe Way to Interact with Data
+
+## Introduction
+
+`useReducer` is a React hook that allows you to manage complex state in your components. It is similar to `useState`, but it offers a few advantages, such as the ability to manage complex state and improve performance.
+
+`useReducer` allows you to control how your data or state can be interacted with. For example, if you have a reducer function that only allows the user to increment or decrement a counter, then you can make it so that the developer cannot accidentally set the counter to a negative number.
+
+## How to use useReducer
+
+# Defining a Reducer
+
+First, we need to define a reducer, which is a function that takes two arguments, `state` and `action`
+
+
+``` jsx
+function reducer(state, action) {
+  // ...
+}
+```
+
+Let’s define the functionality of this reducer now. Let’s say we wanted to build a reducer for a counter, where the user is allowed to increment, decrement, or reset the counter. In this case, the state is just an integer.
+
+```jsx
+function countReducer(state, action) {
+    switch (action.type) {
+        case "increment":
+            return state + 1;
+        case "decrement":
+            return state > 0 ? state - 1 : state;
+        case "reset":
+            return 0;
+        default:
+            throw new Error("Invalid action type");
+    }
+}
+```
+
+As you can see there is a switch statement for the action’s `type`, and depending on its value, the reducer does different actions. Notice that the reducer always ****************************************************************************************************returns what the state should be after the action.****************************************************************************************************
+
+Now, let’s take a look at how to use this reducer.
+
+## Using a Reducer
+
+To use a reducer in a component, we can use the `useReducer` hook:
+
+``` jsx
+const [count, dispatch] = useReducer(countReducer, 0);
+```
+The 0 here is the initial value of the reducer’s state.
+
+Then, we can use the dispatch to change the state as such:
+
+```jsx
+const onIncrementPress = () => {
+        dispatch({ type: "increment" });
+    };
+
+...
+
+<Button onClick={onIncrementPress}>+</Button>
+```
+
+## Example: Counter using a Reducer
+
+<Embed src="https://keith-loww.github.io/sandpack-test/#/usereducer/counter" />
+
+## Using a Context with useReducer
+
+Much like `useState`, `useReducer`'s state and dispatch functions are confined to the component that they are defined in. Because of this, if you created two components that use the same reducer…
+
+```jsx
+function Component1() {
+  const [state, dispatch] = useReducer(reducer, 0)
+  ...
+}
+
+function Component2() {
+  const [state, dispatch] = useReducer(reducer, 0)
+  ...
+}
+
+function App() {
+  return (
+    <Component1 />
+    <Component2 />
+  )
+}
+```
+
+…these components will not share the same state, since there are two separate instances of the same reducer.
+
+So, what do we do if we have a state that needs to be accessed by many components within a certain scope? We can use a React Context! To learn more about `useContext` please take a look at [useContext Hook: Another Way to Share Data](https://www.notion.so/useContext-Hook-Another-Way-to-Share-Data-d67de2df40fb4669ab547e1a52f6f7a3?pvs=21).
+
+Let’s do this for the counter example from the previous section, starting with creating the context:
+
+```jsx
+const CounterContext = createContext({
+    count: 0,
+    dispatch: () => {},
+});
+```
+
+Next, let’s create a provider to provide a certain scope with this context. Here, we can define our reducer:
+
+```jsx
+function CounterProvider({ children }) {
+    const [count, dispatch] = useReducer(countReducer, 0);
+
+    return (
+        <CounterContext.Provider
+            value={{
+                count,
+                dispatch,
+            }}
+        >
+            {children}
+        </CounterContext.Provider>
+    );
+}
+```
+After wrapping the relevant code with the context, we can use this in components within the scope, ex:
+
+```jsx
+function CounterDisplay() {
+    const { count } = useContext(CounterContext);
+
+    return (
+        <span className="flex w-full justify-center text-xl font-bold">
+            {count}
+        </span>
+    );
+}
+
+function IncrementButton() {
+    const { dispatch } = useContext(CounterContext);
+
+    const onIncrementPress = () => {
+        dispatch({ type: "increment" });
+    };
+
+    return <Button onClick={onIncrementPress}>+</Button>;
+}
+```
+
+## Example: Counter using a Reducer Context
+
+<Embed src="https://keith-loww.github.io/sandpack-test/#/usereducer/context" />
+
+
+- `src/lib/store/Counter.tsx`
+    - Defines the reducer
+    - Defines the context
+    - Defines the provider
+- `src/App.tsx`
+    - Defines the components that use the reducer/context
+- `src/main.tsx`
+    - Wraps the app with the provider
+
+## Example: Using Reducer in the Page of Posts
+
+<Embed src="https://keith-loww.github.io/sandpack-test/#/usereducer/posts" />
+
+- `src/lib/store/Posts.tsx`
+    - Defines the reducer
+    - Defines the context
+    - Defines a provider for the context
+- `src/lib/hooks/usePosts.tsx`
+    - Defines a custom hook for the `PostsContext` for error handling
+- `src/main.tsx`
+    - Wraps the `App` in the `PostsProvider`
+- `src/App.tsx`
+    - Makes functions that use the `dispatch` function from the reducer to:
+        - Like a post
+        - Add a post
+
+# Additional Resources
+
+If you would like to learn more about `useReducer`, please refer to the [official React documentation](https://react.dev/reference/react/useReducer).
