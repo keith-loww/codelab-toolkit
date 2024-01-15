@@ -19,10 +19,9 @@ import Embed from "@site/src/components/Embed";
 
 First, we need to define a reducer, which is a function that takes two arguments, `state` and `action`
 
-
-``` jsx
+```jsx
 function reducer(state, action) {
-  // ...
+    // ...
 }
 ```
 
@@ -43,7 +42,7 @@ function countReducer(state, action) {
 }
 ```
 
-As you can see there is a switch statement for the action’s `type`, and depending on its value, the reducer does different actions. Notice that the reducer always ****************************************************************************************************returns what the state should be after the action.****************************************************************************************************
+As you can see there is a switch statement for the action’s `type`, and depending on its value, the reducer does different actions. Notice that the reducer always returns what the state should be after the action.
 
 Now, let’s take a look at how to use this reducer.
 
@@ -51,10 +50,11 @@ Now, let’s take a look at how to use this reducer.
 
 To use a reducer in a component, we can use the `useReducer` hook:
 
-``` jsx
+```jsx
 const [count, dispatch] = useReducer(countReducer, 0);
 ```
-`The 0 here is the initial value of the reducer’s state`.
+
+_The `0` here is the initial value of the reducer’s state._
 
 Then, we can use the dispatch to change the state as such:
 
@@ -126,6 +126,7 @@ function CounterProvider({ children }) {
     );
 }
 ```
+
 After wrapping the relevant code with the context, we can use this in components within the scope, ex:
 
 ```jsx
@@ -154,32 +155,31 @@ function IncrementButton() {
 
 <Embed src="https://keith-loww.github.io/sandpack-test/#/usereducer/context" />
 
-
-- `src/lib/store/Counter.tsx`
-    - Defines the reducer
-    - Defines the context
-    - Defines the provider
-- `src/App.tsx`
-    - Defines the components that use the reducer/context
-- `src/main.tsx`
-    - Wraps the app with the provider
+-   `src/lib/store/Counter.tsx`
+    -   Defines the reducer
+    -   Defines the context
+    -   Defines the provider
+-   `src/App.tsx`
+    -   Defines the components that use the reducer/context
+-   `src/main.tsx`
+    -   Wraps the app with the provider
 
 ## Example: Using Reducer in the Page of Posts
 
 <Embed src="https://keith-loww.github.io/sandpack-test/#/usereducer/posts" />
 
-- `src/lib/store/Posts.tsx`
-    - Defines the reducer
-    - Defines the context
-    - Defines a provider for the context
-- `src/lib/hooks/usePosts.tsx`
-    - Defines a custom hook for the `PostsContext` for error handling
-- `src/main.tsx`
-    - Wraps the `App` in the `PostsProvider`
-- `src/App.tsx`
-    - Makes functions that use the `dispatch` function from the reducer to:
-        - Like a post
-        - Add a post
+-   `src/lib/store/Posts.tsx`
+    -   Defines the reducer
+    -   Defines the context
+    -   Defines a provider for the context
+-   `src/lib/hooks/usePosts.tsx`
+    -   Defines a custom hook for the `PostsContext` for error handling
+-   `src/main.tsx`
+    -   Wraps the `App` in the `PostsProvider`
+-   `src/App.tsx`
+    -   Makes functions that use the `dispatch` function from the reducer to:
+        -   Like a post
+        -   Add a post
 
 # Additional Resources
 
