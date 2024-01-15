@@ -14,11 +14,11 @@ function HomepageHeader() {
             <div className="flex flex-wrap place-content-center place-items-center gap-y-2">
                 <Heading
                     as="h1"
-                    className="font-poppins w-full text-center text-7xl"
+                    className="w-full text-center font-poppins text-7xl"
                 >
                     {siteConfig.title}
                 </Heading>
-                <p className="font-poppins w-full text-center text-xl">
+                <p className="w-full text-center font-poppins text-xl">
                     {siteConfig.tagline}
                 </p>
                 <div className={styles.buttons}>
@@ -38,7 +38,7 @@ export default function Home(): JSX.Element {
     const { siteConfig } = useDocusaurusContext();
     return (
         <Layout
-            title={`${siteConfig.title}`}
+            // title={`${siteConfig.title}`}
             description="Description will go into a meta tag in <head />"
         >
             <HomepageHeader />
