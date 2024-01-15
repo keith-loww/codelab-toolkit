@@ -1,0 +1,137 @@
+---
+title: async/await
+description: Simplifying Promise Consumption
+---
+
+import Embed from "@site/src/components/Embed";
+
+# async/await: Simplifying Promise Consumption
+
+# Introduction
+
+`async/await` is a feature of JavaScript that allows developers to work with promises in simple and synchronous-like fashion. It was introduced back in 2017 and replaced older methods of consuming promises such as chaining `then()` and `catch()` as well as using callbacks, which we will cover as well.
+
+# `async` Functions
+
+- Declaring a function as `async` forces the function to return a promise
+- Values that are not promises are returned as resolved promises
+
+```jsx
+const foo = async () => 1;
+
+foo().then((value) => console.log(value)); // 1
+```
+
+# `await`
+
+- The `await` keyword makes JavaScript wait for a promise to be settled
+- This allows for the code to appear more “synchronous”
+- Note that the `await` keyword can only appear inside the body of an `async` function, however, it can also be used at the top-level of a module
+
+```jsx
+const res = axios.get("https://www.example.com");
+
+export default await res;
+```
+
+# Common Uses
+
+## Fetching Data from an API
+
+One of the most common ways `async/await` is utilized is when fetching data from some form of API.
+
+```jsx
+// Function that makes a GET request to an example API
+const fetchData = async () => {
+	try {
+		// Response is "awaited" and logged to the console once fulfilled
+		const response = await axios.get("https://www.example.com");
+		console.log(response.data)
+	} catch (err) {
+		// Should the request be rejected the associated error object will be logged
+		console.log(err)
+	}
+}
+```
+
+## Retrieving Data from a Database
+
+Another way `async/await` can come up is when a developer is trying to query data from a database in the backend
+
+```jsx
+// Example user router
+router.route("/:id").get(async (req, res) => {
+	try {
+		// Query to the DB is made and result is sent to client once fulfilled
+		const users = await User.findById(req.params.id);
+		res.send(users);
+	} catch (err) {
+		// Error object is logged and send client-side if request is rejected
+		console.log(err);
+		res.status(400).send(err);
+	}
+});
+
+// NOTE: Mongoose queries are NOT promises, however they are thenable 
+// objects that permit the use of async/await
+```
+
+# Promises
+
+Promises provide a method for handling asynchronous operations in JavaScript. A typical example of this would be fetching data from an API or querying a database.
+
+Promises can be in one of three states:
+
+- Pending: The promise is in its initial state and is working on resolving a particular value
+- Fulfilled: The promise has settled and the resulting value can be successfully consumed
+- Rejected: The promise has failed with an err
+
+Using the `then()` , the user can access the resolved data using a callback function. On the other hand, if the promise was rejected, the user can access the associated error object using the `catch()` method.
+
+A simple example of promise consumption is as follows:
+
+```jsx
+// Creates random integer between 1-10
+const randomInt = Math.floor(Math.random() * 10) + 1;
+
+const promise = new Promise((resolve, reject) => {
+	if (randomInt >= 5) {
+		resolve("Number is greater or equal to 5");
+	} else {
+		reject(new Error("Number is less than 5"));
+	}
+});
+
+promise
+	.then((res) => {
+		console.log(res) // "Number is greater or equal to 5"
+	})
+	.catch((err) => {
+		console.log(err.toString()) // "Error: Number is less than 5"
+	});
+```
+
+# Callbacks
+
+Callbacks provide a way for users to invoke a separate function that is passed in as an argument to the currently called function.
+
+A simple example of how callbacks function is shown as follows:
+
+```jsx
+const callback = () => {
+	console.log("Callback invoked!");
+}
+
+const log = (message, callback) => {
+	console.log(message);
+	callback();
+}
+
+log("Hello World!", callback);
+/*
+ * > Hello World!
+ * > Callback invoked!
+ */
+```
+
+Callbacks is an incredibly powerful feature of JavaScript that is used in a variety of applications both front and back-end. They allow for a modular and well-structured manner to invoke functions.
