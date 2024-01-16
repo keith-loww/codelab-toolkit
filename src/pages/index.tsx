@@ -10,8 +10,8 @@ import styles from "./index.module.css";
 function HomepageHeader() {
     const { siteConfig } = useDocusaurusContext();
     return (
-        <header className="flex flex-wrap place-items-center justify-center bg-blue-950 px-6 py-32">
-            <div className="flex flex-wrap place-content-center place-items-center gap-y-2">
+        <header className="flex flex-wrap place-items-center justify-center bg-gradient-to-tr from-red-500 to-orange-300 px-6 py-32 dark:from-red-700 dark:to-orange-500">
+            <div className="flex flex-wrap place-content-center place-items-center gap-y-2 text-white">
                 <Heading
                     as="h1"
                     className="w-full text-center font-poppins text-7xl"

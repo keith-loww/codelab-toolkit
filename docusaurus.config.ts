@@ -129,7 +129,7 @@ const config: Config = {
         },
         colorMode: {
             defaultMode: "dark",
-            disableSwitch: true,
+            disableSwitch: false,
         },
         docs: {
             sidebar: {
