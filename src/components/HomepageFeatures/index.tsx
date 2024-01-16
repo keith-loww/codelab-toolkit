@@ -43,7 +43,10 @@ function Feature({ title, Svg, description }: FeatureItem) {
         <div className={clsx("col col--4")}>
             <div className="text--center">
                 {/* <Svg className={styles.featureSvg} role="img" /> */}
-                <Svg className="h-40 w-40" role="img" />
+                <Svg
+                    className="h-40 w-40 stroke-gray-600 dark:stroke-gray-300"
+                    role="img"
+                />
             </div>
             <div className="text--center padding-horiz--md">
                 <Heading as="h3">{title}</Heading>

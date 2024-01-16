@@ -10,7 +10,7 @@ import styles from "./index.module.css";
 function HomepageHeader() {
     const { siteConfig } = useDocusaurusContext();
     return (
-        <header className="flex flex-wrap place-items-center justify-center bg-gradient-to-tr from-red-500 to-orange-300 px-6 py-32 dark:from-red-700 dark:to-orange-500">
+        <header className="flex flex-wrap place-items-center justify-center bg-gradient-to-tr from-red-500 to-orange-300 px-6 py-32 dark:from-red-600 dark:to-orange-400">
             <div className="grid grid-cols-5 place-content-center place-items-center text-white">
                 <div className="col-span-2 flex w-full justify-end">
                     <img
