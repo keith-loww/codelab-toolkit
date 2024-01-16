@@ -30,20 +30,10 @@ const FeatureList: FeatureItem[] = [
         ),
     },
     {
-        title: "Powered by React",
-        Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+        title: "Apply your Knowledge",
+        Svg: require("@site/static/img/apply.svg").default,
         description: (
-            <>
-                This website is built with{" "}
-                <a href="https://reactjs.org/" target="_blank">
-                    React
-                </a>{" "}
-                and{" "}
-                <a href="https://docusaurus.io/" target="_blank">
-                    Docusaurus
-                </a>
-                . You can use React to build your own applications.
-            </>
+            <>Take what you've learned and apply it to your own projects.</>
         ),
     },
 ];
