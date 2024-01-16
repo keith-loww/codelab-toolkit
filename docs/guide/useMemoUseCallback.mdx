@@ -1,0 +1,117 @@
+---
+title: useMemo and useCallback Hooks
+description: Optimization
+---
+
+import Embed from "@site/src/components/Embed";
+
+
+# useMemo and useCallback Hooks: Optimization
+
+## Introduction
+
+:::warning
+Don’t Optimize Prematurely!
+Overusing these hooks could actually lead to worse performance.
+:::
+
+As apps get larger, it becomes increasingly important to optimize performance. Two of the most important React Hooks for performance optimization are `useMemo` and `useCallback`.
+
+`useMemo` returns a memoized value, which is a cached value that is only recalculated when its dependencies change. This can be useful for avoiding unnecessary re-renders, especially when performing expensive calculations or fetching data.
+
+`useCallback` returns a memoized callback function, which is a function that is only recreated when its dependencies change. This can be useful for preventing unnecessary re-renders of child components when passing callback functions as props.
+
+By using `useMemo` and `useCallback` wisely, you can improve the performance of your React applications and provide a better user experience.
+
+## `useMemo`: Cached Values
+
+The `useMemo` hook in React is used to cache variables between re-renders. Usually, variables will be recalcuated if they are within the scope of the re-render, but for some variables this can be inefficient since they are expensive to calculate.
+
+### How to use `useMemo`
+
+`useMemo` is a hook that takes two arguments:
+
+- Calculation function: a function that returns what value you want to calculate
+- Dependencies: A list of items that, when changed, will cause a recalculation of the value
+
+Here is an example where we are sorting some notes:
+
+```jsx
+const sortedNotes = useMemo(() => notes.sort(), [notes]);
+```
+
+When the `notes` variables changes, the `sortedNotes` variable will recalculate itself.
+
+### When to use `useMemo`
+
+`useMemo` should be used when you have a expensive calculation. A good example of an expensive calculation is the `filter` function:
+
+```jsx
+const evenNumbers = numbers.filter(number => number % 2 === 0);
+```
+
+For large datasets, recalculating a value like this on every re-render is expensive, so we should wrap it in a `useMemo`:
+
+```jsx
+const evenNumbers = useMemo(() => numbers.filter(number => number % 2 === 0), [numbers]);
+```
+
+:::tip
+Note that even if it is an expensive calculation, other factors such as dataset size affect the actual performance of the app. Just because a calculation is expensive does NOT necessarily mean it should automatically be wrapped in a `useMemo`.
+:::
+
+It is also useful for `useMemo` to be used for a value that is a dependency of another hook. The memoized value can help avoid both its own recalculation and the recalculation of the dependent hook.
+
+```jsx
+const memoizedValue = useMemo(() => {
+  // This is an expensive calculation.
+  return Math.pow(10, count);
+}, [count]);
+
+// This hook depends on the memoized value.
+useEffect(() => {
+  console.log('Memoized value:', memoizedValue);
+}, [memoizedValue]);
+```
+
+### When NOT to use `useMemo`
+
+In general, `useMemo` shouldn’t be used until the developer is sure that its addition will optimize the app. Usually some amount of manual testing is needed to determine if `useMemo` is or isn’t needed in an app.
+
+But to be more specific, it is not usually necessary to use `useMemo` on inexpensive calculations, such as basic arithmetic:
+
+```jsx
+const half = const half = numbers / 2;
+```
+
+## `useCallback`: Cached Functions
+
+`useCallback` is a React Hook that returns a memoized callback function. A memoized callback function is a function that is only recreated when its dependencies change. This can be useful for preventing unnecessary re-renders of child components when passing callback functions as props.
+
+### How to use `useCallback`
+
+The `useCallback` hook takes two arguments:
+
+- **Callback function:** A function that you want to memoize.
+- **Dependencies:** An array of dependencies. The `useCallback` hook will only recreate the callback function if any of the dependencies change.
+
+Here is an example of how to use the `useCallback` hook:
+
+```jsx
+const doSomethingWithNumber = useCallback(() => doSomething(magicNumber), [magicNumber])
+```
+
+Now, `doSomethingWithNumber` is a callback function that calls another function onto the variable `magicNumber`. It recreates itself whenever `magicNumber` changes, since the function would do something different then.
+
+### When to use `useCallback`
+
+It’s generally recommended to wrap a function in a `useCallback` if:
+
+- It is a dependency of another `useMemo` or `memo` and you don’t want the function to cause unnecessary re-renders
+- It is a dependency of another hook, like `useEffect` so that it does not recalculate unnecessarily
+
+## Additional Resources
+
+If you would like to learn more about `useMemo`, please refer to the [official React documentation](https://react.dev/reference/react/useMemo).
+
+If you would like to learn more about `useCallback`, please refer to the [official React documentation](https://react.dev/reference/react/useCallback).
