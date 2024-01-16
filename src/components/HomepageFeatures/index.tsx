@@ -10,35 +10,30 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
     {
-        title: "Easy to Use",
-        Svg: require("@site/static/img/undraw_docusaurus_mountain.svg").default,
+        title: "Beyond the Bootcamp",
+        Svg: require("@site/static/img/learn.svg").default,
         description: (
             <>
-                Docusaurus was designed from the ground up to be easily
-                installed and used to get your website up and running quickly.
+                Learn common patterns and best practices for building
+                applications with CodeLab.
             </>
         ),
     },
     {
-        title: "Focus on What Matters",
-        Svg: require("@site/static/img/undraw_docusaurus_tree.svg").default,
+        title: "Interact with Live Examples",
+        Svg: require("@site/static/img/interact.svg").default,
         description: (
             <>
-                Docusaurus lets you focus on your docs, and we&apos;ll do the
-                chores. Go ahead and move your docs into the <code>docs</code>{" "}
-                directory.
+                Examples use code sandboxes to allow you to interact with the
+                code and see the results.
             </>
         ),
     },
     {
-        title: "Powered by React",
-        Svg: require("@site/static/img/undraw_docusaurus_react.svg").default,
+        title: "Apply your Knowledge",
+        Svg: require("@site/static/img/apply.svg").default,
         description: (
-            <>
-                Extend or customize your website layout by reusing React.
-                Docusaurus can be extended while reusing the same header and
-                footer.
-            </>
+            <>Take what you've learned and apply it to your own projects.</>
         ),
     },
 ];
@@ -47,7 +42,11 @@ function Feature({ title, Svg, description }: FeatureItem) {
     return (
         <div className={clsx("col col--4")}>
             <div className="text--center">
-                <Svg className={styles.featureSvg} role="img" />
+                {/* <Svg className={styles.featureSvg} role="img" /> */}
+                <Svg
+                    className="h-40 w-40 stroke-gray-600 dark:stroke-gray-300"
+                    role="img"
+                />
             </div>
             <div className="text--center padding-horiz--md">
                 <Heading as="h3">{title}</Heading>
