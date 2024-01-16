@@ -5,18 +5,17 @@ description: Another Way to Style CSS
 
 import Embed from "@site/src/components/Embed";
 
-
 # Default Theming With Tailwind
 
 ## Introduction
 
-Tailwind is a fantastic way to handle CSS styling. It allows developers to dynamically apply styles to their components without having to mess with external CSS files. 
+Tailwind is a fantastic way to handle CSS styling. It allows developers to dynamically apply styles to their components without having to mess with external CSS files.
 
 However, there are some styles that would be better if they had a global scope, therefore this guide contains examples on how to configure default styles on your Tailwind project.
 
 ## Preflight
 
-*Before we talk about making our own default styles, let’s talk about the Tailwind styles that come out of the box*
+_Before we talk about making our own default styles, let’s talk about the Tailwind styles that come out of the box_
 
 Tailwind Preflight is a premade set of base styles that was implemented with the motivation of smoothing out cross-browser inconsistencies. When you install Tailwind into a project, preflight is automatically configured out of the box.
 
@@ -51,34 +50,34 @@ To do this, add a `theme` object to your `tailwind.config.js`, and within that o
 
 ```jsx
 module.exports = {
-  theme: {
-    colors: {
-      'tahiti': '#3ab7bf'
+    theme: {
+        colors: {
+            tahiti: "#3ab7bf",
+        },
     },
-  },
-}
+};
 ```
 
 If you wanted to add shade variants of your colors, similar to the default Tailwind colors, you can achieve it like so:
 
 ```jsx
 module.exports = {
-  theme: {
-    colors: {
-      'tahiti': {
-        100: '#cffafe',
-        200: '#a5f3fc',
-        300: '#67e8f9',
-        400: '#22d3ee',
-        500: '#06b6d4',
-        600: '#0891b2',
-        700: '#0e7490',
-        800: '#155e75',
-        900: '#164e63',
-      },
+    theme: {
+        colors: {
+            tahiti: {
+                100: "#cffafe",
+                200: "#a5f3fc",
+                300: "#67e8f9",
+                400: "#22d3ee",
+                500: "#06b6d4",
+                600: "#0891b2",
+                700: "#0e7490",
+                800: "#155e75",
+                900: "#164e63",
+            },
+        },
     },
-  },
-}
+};
 ```
 
 ### Extending The Theme
@@ -87,7 +86,7 @@ If you added the colors in the way we did above, you will notice that Tailwind w
 
 ### Example: Custom Colors
 
-<Embed src = "https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/tailwind/color" />
+<Embed src="https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/tailwind/color" />
 
 In this example, we have added two new colors to the `tailwind.config.js`, the `tahiti` palate we defined above, as well as a new single color `gray-dark`.
 
@@ -99,16 +98,16 @@ Another thing that developers will most likely want to customize are the fonts u
 
 ```jsx
 module.exports = {
-  theme: {
-    extend: {
-      fontFamily: {
-        display: 'Oswald, ui-serif', // Adds a new `font-display` class
-        sans: ['Graphik', 'sans-serif'],
-        serif: ['Merriweather', 'serif'],
-      }
-    }
-  }
-}
+    theme: {
+        extend: {
+            fontFamily: {
+                display: "Oswald, ui-serif", // Adds a new `font-display` class
+                sans: ["Graphik", "sans-serif"],
+                serif: ["Merriweather", "serif"],
+            },
+        },
+    },
+};
 ```
 
 The above defines 3 new fonts, `display` , `sans`, and `serif`.
@@ -127,21 +126,19 @@ Similarly to above, add the font to your `tailwind.config.js`:
 
 ```jsx
 fontFamily: {
-  poppins: 'Poppins', sans-serif;
+    poppins: "Poppins", sans - serif;
 }
 ```
 
 Then, we can use this font wherever we want in the app:
 
 ```jsx
-<span className="font-poppins text-7xl text-white">
-  CodeLab
-</span>
+<span className="font-poppins text-7xl text-white">CodeLab</span>
 ```
 
 Here it is in action:
 
-<Embed src = "https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/tailwind/font" />
+<Embed src="https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/tailwind/font" />
 
 ## Additional Resources
 

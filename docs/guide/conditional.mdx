@@ -2,6 +2,7 @@
 title: Conditional Rendering
 description: Learn about conditional rendering in React
 ---
+
 # Conditional Rendering
 
 ## Introduction
@@ -14,10 +15,10 @@ Conditional rendering in React behaves in a similar manner to normal conditional
 
 ```tsx
 export default function Example({ isLoggedIn }) {
-	if (isLoggedIn) {
-		return <button>Log Out</button>;
-	}
-	return <button>Log In</button>;
+    if (isLoggedIn) {
+        return <button>Log Out</button>;
+    }
+    return <button>Log In</button>;
 }
 ```
 
@@ -35,16 +36,16 @@ Rendering the UI based on state is also incredibly common. Say for example, weâ€
 import { useState } from "react";
 
 export default function TaskList({ isLoggedIn }) {
-  const [tasks, setTasks] = useState();
+    const [tasks, setTasks] = useState();
 
-  return (
-    <ul>
-      {tasks.slice(0, 10).map((task) => (
-        <li>{task.name}</li>
-      ))}
-      {tasks.length > 10 && <MoreTasks tasks={tasks.slice(10)} />}
-    </ul>
-  );
+    return (
+        <ul>
+            {tasks.slice(0, 10).map((task) => (
+                <li>{task.name}</li>
+            ))}
+            {tasks.length > 10 && <MoreTasks tasks={tasks.slice(10)} />}
+        </ul>
+    );
 }
 ```
 
@@ -64,7 +65,7 @@ More common than not, the ternary operator, `?`, is used in place of `if` and `e
 
 ```tsx
 export default function Example({ isLoggedIn }) {
-	return isLoggedIn ? <button>Log Out</button> : <button>Log In</button>;
+    return isLoggedIn ? <button>Log Out</button> : <button>Log In</button>;
 }
 ```
 
@@ -74,7 +75,7 @@ Building upon the use of the ternary operator, should we not need anything to be
 
 ```tsx
 export default function Example({ isLoggedIn }) {
-	return isLoggedIn && <AdminPanel />;
+    return isLoggedIn && <AdminPanel />;
 }
 ```
 
@@ -88,4 +89,4 @@ Note that even though `&&` is commonly used and generally works for most situati
 
 ## Additional Resources
 
-- [Official React Documentation on Condition Rendering](https://react.dev/learn/conditional-rendering)
+-   [Official React Documentation on Condition Rendering](https://react.dev/learn/conditional-rendering)
