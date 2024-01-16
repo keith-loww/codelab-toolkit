@@ -25,7 +25,7 @@ This hook simplifies your code by separating the concerns of rendering and side 
 2. `useEffect` follows the format of `useState(setup, dependencies)`
     1. `Setup:` A function that contains the hook’s logic. This function may also optionally return a cleanup function. On every render with changed dependencies, React will first run the cleanup function (if provided) with old values, and then run the setup function with new values.
     2. `Dependencies (optional):` An array of **reactive** values references inside the setup function. **Reactive** values include all props, states, variables, and functions declared in the body of your component. You can easily verify that your `useEffect` has the correct dependencies by [configuring your linter](https://react.dev/learn/editor-setup#linting).
-        1. Refer to the [Dependency Guide](https://www.notion.so/useEffect-Hook-Side-Effects-919790531f014d678044636b860b8c72?pvs=21) to learn how to pass dependency arrays.
+        1. Refer to the [Dependency Guide](#dependency-guide) to learn how to pass dependency arrays.
 3. Call `useEffect` at the top level of your component to declare a state variable.
     1. Note: Since `useEffect` is a hook, you **cannot** call it inside loops or conditions. If necessary, you can extract a new component and move the state into it.
 
