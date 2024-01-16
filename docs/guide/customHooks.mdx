@@ -1,0 +1,207 @@
+---
+title: Custom Hooks
+description: Learn how to create custom hooks in React
+---
+
+import Embed from "@site/src/components/Embed";
+
+# Custom Hooks
+
+# Introduction
+
+While React comes with many hooks out of the box, such as `useState` and `useEffect`, sometimes it could be useful to have a hook that is more specifically suited for what you are building. That’s where defining your own hooks can come in handy.
+
+Custom hooks in React are a great way to share \***\*\*\*\*\***logic\***\*\*\*\*\*** between components, and by doing so, it reduces code duplication and improves the separation of concerns.
+
+# How to use a Custom Hook?
+
+A custom hook is can be defined by creating a JavaScript function beginning with `use`. So, for example, if we wanted to define a hook for a counter, we could name it `useCounter`.
+
+```jsx
+function useCounter() {
+	...
+}
+```
+
+Let’s expand on this example. Let’s say we want a counter app, with a count value and a way to increment and decrement values. This is how we would do that without a custom hook:
+
+```jsx
+function App() {
+    const [count, setCount] = useState(0);
+
+    const handleIncrement = () => {
+        setCount(count + 1);
+    };
+
+    const handleDecrement = () => {
+        setCount(count - 1);
+    };
+
+    return (
+        <>
+            <div>
+                <h1>Count: {count}</h1>
+                <button onClick={handleIncrement}>Increment</button>
+                <button onClick={handleDecrement}>Decrement</button>
+            </div>
+        </>
+    );
+}
+```
+
+But what happens when we want two counters?
+
+```jsx
+function App() {
+    const [count1, setCount1] = useState(0);
+    const [count2, setCount2] = useState(0);
+
+    const handleIncrement1 = () => {
+        setCount1(count1 + 1);
+    };
+
+    const handleDecrement1 = () => {
+        setCount1(count1 - 1);
+    };
+
+    const handleIncrement2 = () => {
+        setCount2(count2 + 1);
+    };
+
+    const handleDecrement2 = () => {
+        setCount2(count2 - 1);
+    };
+
+    return (
+        <>
+            <div>
+                <h1>Count 1: {count1}</h1>
+                <button onClick={handleIncrement1}>Increment</button>
+                <button onClick={handleDecrement1}>Decrement</button>
+            </div>
+            <div>
+                <h1>Count 2: {count2}</h1>
+                <button onClick={handleIncrement2}>Increment</button>
+                <button onClick={handleDecrement2}>Decrement</button>
+            </div>
+        </>
+    );
+}
+```
+
+Suddenly, the app is much bigger, and more bloated. There’s a lot of duplicated code here, but since we need to handle two different `useState` values here, there’s not much we could do.
+
+The solution? Define a custom hook for a counter:
+
+```jsx
+function useCounter(initialValue: number = 0) {
+  const [count, setCount] = useState(initialValue);
+
+  function handleIncrement() {
+    setCount(count + 1);
+  }
+
+  function handleDecrement() {
+    setCount(count - 1);
+  }
+
+  return {
+    count,
+    handleIncrement,
+    handleDecrement,
+  };
+}
+```
+
+<aside>
+⚠️ **Hooks Automatically Share Logic, Not Values**
+
+Notice that we needed to return the `count`, `handleIncrement`, and `handleDecrement` values within the hook itself. You must manually return any values that your hook should return.
+
+</aside>
+
+Now, our single counter example looks like this:
+
+```jsx
+function App() {
+    const { count, handleIncrement, handleDecrement } = useCounter(0);
+
+    return (
+        <>
+            <div>
+                <h1>Count: {count}</h1>
+                <button onClick={handleIncrement}>Increment</button>
+                <button onClick={handleDecrement}>Decrement</button>
+            </div>
+        </>
+    );
+}
+```
+
+…and our double counter example:
+
+```
+function App() {
+  const { count: count1, handleIncrement: handleIncrement1, handleDecrement: handleDecrement1 } = useCounter(0);
+  const { count: count2, handleIncrement: handleIncrement2, handleDecrement: handleDecrement2 } = useCounter(0);
+
+  return (
+    <>
+      <div>
+        <h1>Counter 1: {count1}</h1>
+        <button onClick={handleIncrement1}>Increment</button>
+        <button onClick={handleDecrement1}>Decrement</button>
+      </div>
+      <div>
+        <h1>Counter 2: {count2}</h1>
+        <button onClick={handleIncrement2}>Increment</button>
+        <button onClick={handleDecrement2}>Decrement</button>
+      </div>
+    </>
+  );
+}
+```
+
+A lot of the duplicated code has been removed and the custom hook provides abstraction for the functionality of the counter! 😀
+
+## Example: `useCounter` Hook
+
+[https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/custom-hooks/counter](https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/custom-hooks/counter)
+
+# When to use a Custom Hook?
+
+It’s important to note that hooks aren’t necessarily the solution to all duplicated pieces of code. If we wanted to define a way to get a sorted array…
+
+```jsx
+// ❌ This doesn't need to be a hook
+function useSorted(array) {
+	...
+}
+
+// ✅ Use a regular function instead!
+function getSorted(array) {
+	...
+}
+```
+
+… since this doesn’t have to use any stateful logic in the app, there is no reason to make it a hook. This makes it so that you can use this function anywhere, not just on the top-level of your component.
+
+It’s also good to keep custom hooks for easily definable, high-level use-cases. If you cannot easily name your custom hook, its logic might be too entangled with the rest of your app to consider a custom hook as an option.
+
+# Example: `useTheme`
+
+[https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/custom-hooks/theme](https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/custom-hooks/theme)
+
+## Important Parts
+
+`src/hooks/useTheme.tsx` defines a hook that returns the theme’s current state, as well as a function to toggle the Tailwind Theme
+
+-   It toggles the theme via an HTML class, refer to the [official Tailwind documentation](https://tailwindcss.com/docs/dark-mode) for more information
+
+`src/App.tsx` uses the `useTheme` hook, it changes the text based on the state, as well as a button that toggles the theme using the function.
+
+To understand how the text is being conditionally rendered, consider reading [Conditional Rendering](https://www.notion.so/Conditional-Rendering-081ef7c362904b4c805c8d3fcb8d6022?pvs=21)
+
+# Additional Resources
+
+If you would like to learn more about custom hooks in React, please refer to the [official React documentation](https://react.dev/learn/reusing-logic-with-custom-hooks#custom-hooks-help-you-migrate-to-better-patterns)
