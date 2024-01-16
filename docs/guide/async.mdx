@@ -5,13 +5,13 @@ description: Simplifying Promise Consumption
 
 import Embed from "@site/src/components/Embed";
 
-# async/await: Simplifying Promise Consumption
+# `async`/`await`: Simplifying Promise Consumption
 
-# Introduction
+## Introduction
 
 `async/await` is a feature of JavaScript that allows developers to work with promises in simple and synchronous-like fashion. It was introduced back in 2017 and replaced older methods of consuming promises such as chaining `then()` and `catch()` as well as using callbacks, which we will cover as well.
 
-# `async` Functions
+## `async` Functions
 
 - Declaring a function as `async` forces the function to return a promise
 - Values that are not promises are returned as resolved promises
@@ -22,7 +22,7 @@ const foo = async () => 1;
 foo().then((value) => console.log(value)); // 1
 ```
 
-# `await`
+## `await`
 
 - The `await` keyword makes JavaScript wait for a promise to be settled
 - This allows for the code to appear more “synchronous”
@@ -34,9 +34,9 @@ const res = axios.get("https://www.example.com");
 export default await res;
 ```
 
-# Common Uses
+## Common Uses
 
-## Fetching Data from an API
+### Fetching Data from an API
 
 One of the most common ways `async/await` is utilized is when fetching data from some form of API.
 
@@ -54,7 +54,7 @@ const fetchData = async () => {
 }
 ```
 
-## Retrieving Data from a Database
+### Retrieving Data from a Database
 
 Another way `async/await` can come up is when a developer is trying to query data from a database in the backend
 
@@ -76,7 +76,7 @@ router.route("/:id").get(async (req, res) => {
 // objects that permit the use of async/await
 ```
 
-# Promises
+## Promises
 
 Promises provide a method for handling asynchronous operations in JavaScript. A typical example of this would be fetching data from an API or querying a database.
 
@@ -111,7 +111,7 @@ promise
 	});
 ```
 
-# Callbacks
+## Callbacks
 
 Callbacks provide a way for users to invoke a separate function that is passed in as an argument to the currently called function.
 
