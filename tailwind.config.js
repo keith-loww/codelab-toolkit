@@ -9,6 +9,7 @@ module.exports = {
             },
         },
     },
+    darkMode: ["class", "[data-theme='dark']"],
     plugins: [],
     corePlugins: {
         preflight: false,
