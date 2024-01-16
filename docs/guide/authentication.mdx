@@ -5,11 +5,11 @@ description: Simple and Secure Authentication for your Next App
 
 # Authentication with NextAuth
 
-# Introduction
+## Introduction
 
 Authentication plays a crucial role in maintaining the security and usability of your web application. Coming in a variety of different forms, providers, and standards, a secure and robust authentication system can be fairly daunting and cumbersome to implement especially for beginner developers. Luckily, there are quite a few simple and easily-understandable solutions out there that can quickly get the ball rolling on securing your application. During this lesson, we will be demonstrating the features of NextAuth, an open-source authentication solution for Next.js, by implementing Google Auth into an example Next.js application.
 
-# Installation
+## Installation
 
 Install NextAuth using `npm`
 
@@ -17,7 +17,7 @@ Install NextAuth using `npm`
 npm install next-auth
 ```
 
-# Setup
+## Setup
 
 Create a file named `[...nextauth].js` in `pages/api/auth`. This file will describe the configuration of NextAuth. For example, what providers would you like to have, any custom pages for sign in or sign out, any callbacks you’d like to define, etc.
 
@@ -41,7 +41,7 @@ Providers dictate how the user can sign in to your application. For example, if 
 
 Note that in our case, since we are utilizing the Google provider, we’ll also need to create a Google web client so that we can utilize Google’s credential API. This can be done by going to the [Google Cloud console](https://console.cloud.google.com/getting-started), creating a project, and setting up a OAuth 2.0 client ID. This is where you can get the client ID and client secret variables seen above.
 
-# Integration
+## Integration
 
 We will now integrate NextAuth into the application itself. First, we need to declare the session provider near the root of the component tree so that we can get the user’s information in our pages. We can simply do so by placing the provider at the top level of our application.
 
@@ -90,12 +90,12 @@ export default function LoginButton() {
 }
 ```
 
-# Completed Example
+## Completed Example
 
 [https://codesandbox.io/p/sandbox/next-auth-k33q9m?file=%2Fapp%2Fpage.tsx%3A9%2C84&embed=1](https://codesandbox.io/p/sandbox/next-auth-k33q9m?file=%2Fapp%2Fpage.tsx%3A9%2C84&embed=1)
 
 That’s it! Note that we have compiled a fairly bare bones example here since in real applications of NextAuth, there are most likely a plethora of other settings you would want to change and features you’d like to include. Some of these may include, fetching session info server-side, utilizing a route protection middleware, etc.
 
-# Additional Resources
+## Additional Resources
 
 -   [NextAuth Official Documentation](https://next-auth.js.org/getting-started/introduction)
