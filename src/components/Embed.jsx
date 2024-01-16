@@ -1,15 +1,11 @@
 import React from "react";
 
 const Embed = ({ src }) => {
-  return (
-    <div className="flex rounded border h-[500px]">
-      <iframe
-        src={src}
-        className="w-full h-full"
-        frameborder="0"
-        />
-    </div>
-  );
+    return (
+        <div className="flex h-[500px] rounded border">
+            <iframe src={src} className="h-full w-full" frameborder="0" />
+        </div>
+    );
 };
 
 export default Embed;
