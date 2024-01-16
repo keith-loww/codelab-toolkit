@@ -1,14 +1,14 @@
 ---
 title: Conditional Rendering
-description:
+description: Learn about conditional rendering in React
 ---
 # Conditional Rendering
 
-# Introduction
+## Introduction
 
 When developing React components, note that one may need to display different variants of the component or sometimes another component altogether depending on the active user, type of data passed in, etc. In these scenarios, we must employ conditional rendering.
 
-# Mechanism
+## Mechanism
 
 Conditional rendering in React behaves in a similar manner to normal conditional statements you’ve all learned in your intro to programming classes. Given a certain conditional statement, we return some JSX. For example, in the following snippet, we display the appropriate button depending on whether the application is in a logged in state as defined by `props`.
 
@@ -21,7 +21,13 @@ export default function Example({ isLoggedIn }) {
 }
 ```
 
-💡 As conditional rendering based on `props` is an incredibly common pattern seen across React development, you should most definitely take the time to understand what is going on here.
+:::tip
+
+As conditional rendering based on `props` is an incredibly common pattern seen across React development, you should most definitely take the time to understand what is going on here.
+
+:::
+
+---
 
 Rendering the UI based on state is also incredibly common. Say for example, we’re rendering a list of tasks and if the number of tasks we need to display exceeds 10, we show the extra tasks in a component called `<MoreTasks />`.
 
@@ -42,14 +48,17 @@ export default function TaskList({ isLoggedIn }) {
 }
 ```
 
-💡 Note the use of `&&` in the snippet above and explore how it used in the section below.
+:::note
 
+Note the use of `&&` in the snippet above and explore how it used in the section below.
 
-# Code Alternatives
+:::
+
+## Code Alternatives
 
 While writing classic `if`/`else` statements works just fine, you will more than likely encounter one of the two following alternatives used in application instead.
 
-## Using the Ternary Operator
+### Using the Ternary Operator
 
 More common than not, the ternary operator, `?`, is used in place of `if` and `else` statements for better code readability. Using the above example, the equivalent would be:
 
@@ -59,7 +68,7 @@ export default function Example({ isLoggedIn }) {
 }
 ```
 
-## Using logical `&&`
+### Using logical `&&`
 
 Building upon the use of the ternary operator, should we not need anything to be rendered in the `else` case, we can simply use short circuit evaluation in conjunction with the fact that React will not render anything if `false` is returned from a component. For example, consider the following example:
 
@@ -71,9 +80,12 @@ export default function Example({ isLoggedIn }) {
 
 In this scenario, if `isLoggedIn` is `true` , React will return the latter value from the statement, in this case it’s `<AdminPanel />` . On the other hand, should `isLoggedIn` be `false`, React will return `false` resulting in nothing being rendered in the UI.
 
-💡 Note that even though `&&` is commonly used and generally works for most situations, there are edge cases, such as when the condition evaluates to `0` or `undefined` , where it may result in unexpected behaviors. If interested, you can read about this topic [here](https://medium.com/geekculture/stop-using-for-conditional-rendering-in-react-a0f7b96200f8#bd50).
+:::note
 
+Note that even though `&&` is commonly used and generally works for most situations, there are edge cases, such as when the condition evaluates to `0` or `undefined` , where it may result in unexpected behaviors. If interested, you can read about this topic [here](https://medium.com/geekculture/stop-using-for-conditional-rendering-in-react-a0f7b96200f8#bd50).
 
-# Additional Resources
+:::
+
+## Additional Resources
 
 - [Official React Documentation on Condition Rendering](https://react.dev/learn/conditional-rendering)

@@ -11,8 +11,10 @@ import Embed from "@site/src/components/Embed";
 ## Introduction
 
 :::warning
+
 Don’t Optimize Prematurely!
 Overusing these hooks could actually lead to worse performance.
+
 :::
 
 As apps get larger, it becomes increasingly important to optimize performance. Two of the most important React Hooks for performance optimization are `useMemo` and `useCallback`.
@@ -57,7 +59,9 @@ const evenNumbers = useMemo(() => numbers.filter(number => number % 2 === 0), [n
 ```
 
 :::tip
+
 Note that even if it is an expensive calculation, other factors such as dataset size affect the actual performance of the app. Just because a calculation is expensive does NOT necessarily mean it should automatically be wrapped in a `useMemo`.
+
 :::
 
 It is also useful for `useMemo` to be used for a value that is a dependency of another hook. The memoized value can help avoid both its own recalculation and the recalculation of the dependent hook.
