@@ -8,19 +8,19 @@ import Embed from "@site/src/components/Embed";
 
 # Default Theming With Tailwind
 
-# Introduction
+## Introduction
 
 Tailwind is a fantastic way to handle CSS styling. It allows developers to dynamically apply styles to their components without having to mess with external CSS files. 
 
 However, there are some styles that would be better if they had a global scope, therefore this guide contains examples on how to configure default styles on your Tailwind project.
 
-# Preflight
+## Preflight
 
 *Before we talk about making our own default styles, let’s talk about the Tailwind styles that come out of the box*
 
 Tailwind Preflight is a premade set of base styles that was implemented with the motivation of smoothing out cross-browser inconsistencies. When you install Tailwind into a project, preflight is automatically configured out of the box.
 
-## Disabling Preflight
+### Disabling Preflight
 
 While it is recommended to keep Preflight enabled, especially if Tailwind is your sole CSS solution, there are times where it would be necessary to disable the base styles.
 
@@ -43,7 +43,7 @@ module.exports = {
 }
 ```
 
-# Colors
+## Colors
 
 By default, Tailwind comes with a multitude of colors for developers to use, where you can find [here](https://tailwindcss.com/docs/customizing-colors). However, there will be times where you will want to define your own colors for your app.
 
@@ -81,11 +81,11 @@ module.exports = {
 }
 ```
 
-## Extending The Theme
+### Extending The Theme
 
 If you added the colors in the way we did above, you will notice that Tailwind will no longer have access to its usual base colors. If you would like to keep the original color palate, while adding or replacing certain colors, you can do so by wrapping `colors` inside an `extend` object, which will tell Tailwind to “extend” its theme instead of redefining it.
 
-## Example: Custom Colors
+### Example: Custom Colors
 
 <Embed src = "https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/tailwind/color" />
 
@@ -93,7 +93,7 @@ In this example, we have added two new colors to the `tailwind.config.js`, the `
 
 As you can see in `src/App.tsx`, we define a background color for the app using the new `gray-dark` color, and create three containers, each showcasing different shades of the `tahiti` swatch.
 
-# Fonts
+## Fonts
 
 Another thing that developers will most likely want to customize are the fonts used by their application. To customize your font in Tailwind, add a `fontFamily` object to your `theme` object:
 
@@ -113,7 +113,7 @@ module.exports = {
 
 The above defines 3 new fonts, `display` , `sans`, and `serif`.
 
-## External Fonts
+### External Fonts
 
 We would also need to import whatever external font that you would like to use as well. Let’s say we wanted to use the CodeLab logo’s font, “Poppins”.
 
@@ -143,7 +143,7 @@ Here it is in action:
 
 <Embed src = "https://codelab-davis.github.io/codelab-toolkit-sandboxes/#/tailwind/font" />
 
-# Additional Resources
+## Additional Resources
 
 To learn more about setting default styles in Tailwind, please check out the official [Tailwind Documentation](https://tailwindcss.com/docs/theme) on theme configuration.
 
