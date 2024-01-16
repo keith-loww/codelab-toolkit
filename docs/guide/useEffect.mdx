@@ -1,0 +1,85 @@
+---
+title: useEffect Hook
+description: Side Effects
+---
+
+import Embed from "@site/src/components/Embed";
+
+# useEffect Hook: Side Effects
+
+## Introduction
+
+`useEffect` is a powerful hook in React that enables you to manage side effects and interactions with the outside world in your components. Side effects can include data fetching, DOM manipulation, setting up subscriptions, and more. This hook plays a crucial role in ensuring your components respond to changes and events in a controlled and predictable manner.
+
+To grasp the significance of the `useEffect` hook, let's consider a scenario: imagine you're building a real-time chat application. You want to update the chat window whenever a new message arrives. Without `useEffect`, you'd face the challenge of manually coordinating these updates and handling asynchronous data flow.
+
+`useEffect` comes to the rescue by providing a declarative way to manage these side effects. It allows you to specify what should happen in response to specific events or changes, all within the confines of your React components.
+
+This hook simplifies your code by separating the concerns of rendering and side effects, making it more maintainable and less error-prone. It's like having a dedicated assistant who takes care of the behind-the-scenes work while you focus on building a responsive and interactive user interface.
+
+## How to use `useEffect`
+
+### Steps
+
+1. Import React at the top of your JSX or TSX file.
+2. `useEffect` follows the format of `useState(setup, dependencies)`
+    1. `Setup:` A function that contains the hook’s logic. This function may also optionally return a cleanup function. On every render with changed dependencies, React will first run the cleanup function (if provided) with old values, and then run the setup function with new values.
+    2. `Dependencies (optional):` An array of ******************reactive****************** values references inside the setup function. ****************Reactive**************** values include all props, states, variables, and functions declared in the body of your component. You can easily verify that your `useEffect` has the correct dependencies by [configuring your linter](https://react.dev/learn/editor-setup#linting).
+        1. Refer to the [Dependency Guide](https://www.notion.so/useEffect-Hook-Side-Effects-919790531f014d678044636b860b8c72?pvs=21) to learn how to pass dependency arrays.
+3. Call `useEffect` at the top level of your component to declare a state variable.
+    1. Note: Since `useEffect` is a hook, you **cannot** call it inside loops or conditions. If necessary, you can extract a new component and move the state into it.
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from an API
+    fetch('https://api.example.com/data')
+      .then((response) => response.json())
+      .then((result) => setData(result))
+      .catch((error) => console.error(error));
+  }, []);
+  // ...
+```
+
+### Dependency Guide
+
+```jsx
+useEffect(() => {
+  // ...
+}, []); // Does not run again (except once in development)
+```
+Passing an empty dependency array will only run the effect once on the initial render/code/cp
+```jsx
+useEffect(() => {
+  // ...
+}, [a, b]); // Runs again if a or b are different
+```
+Specifying dependencies in the dependency array will run the Effect on the initial render and every subsequent render where the dependencies have changed
+```jsx
+useEffect(() => {
+  // ...
+}); // Always runs again
+```
+Passing no dependency array will rerun your Effect after every single render of your component.
+
+## Examples
+
+### Controlling a modal with a dependency array
+
+This example passes a state variable (isOpen) into the useEffect dependency array. The state variable is updated when the Open Dialog button is pressed, running the setup function and displaying the modal. When the Open Dialog button is pressed again, the useEffect runs the cleanup function to close the dialog.
+
+<Embed src = "https://codesandbox.io/embed/vigorous-snowflake-6f2sn8?codemirror=1&fontsize=14&hidenavigation=1&module=%2FModalDialog.js&theme=dark" />
+
+### Listening to a Global Browser Event
+
+This example passes an empty dependency array to run the setup function only on the initial render. The setup function adds a global listener to the position of the user’s cursor to move the `div` correspondingly. When the component is removed from the DOM, the cleanup function is run to remove the global listener.    
+
+<Embed src = "https://codesandbox.io/embed/white-monad-2hwrwm?fontsize=14&hidenavigation=1&module=%2FApp.js&theme=dark" />
+
+## Additional Resources
+
+If you would like to learn more about `useEffect`, please refer to the [official React documentation](https://react.dev/reference/react/useEffect).
