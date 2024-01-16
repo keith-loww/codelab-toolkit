@@ -1,0 +1,101 @@
+---
+title: Authentication with NextAuth
+description: Simple and Secure Authentication for your Next App
+---
+
+# Authentication with NextAuth
+
+# Introduction
+
+Authentication plays a crucial role in maintaining the security and usability of your web application. Coming in a variety of different forms, providers, and standards, a secure and robust authentication system can be fairly daunting and cumbersome to implement especially for beginner developers. Luckily, there are quite a few simple and easily-understandable solutions out there that can quickly get the ball rolling on securing your application. During this lesson, we will be demonstrating the features of NextAuth, an open-source authentication solution for Next.js, by implementing Google Auth into an example Next.js application.
+
+# Installation
+
+Install NextAuth using `npm`
+
+```bash
+npm install next-auth
+```
+
+# Setup
+
+Create a file named `[...nextauth].js` in `pages/api/auth`. This file will describe the configuration of NextAuth. For example, what providers would you like to have, any custom pages for sign in or sign out, any callbacks you’d like to define, etc.
+
+```jsx
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+
+export const authOptions = {
+    providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        }),
+    ],
+};
+
+export default NextAuth(authOptions);
+```
+
+Providers dictate how the user can sign in to your application. For example, if you’d like the user to sign in with their Google account, you would use the Google provider. On the other hand, if you’d like the user to sign in with an username and password that is stored in your user database, the credentials provider should be used.
+
+Note that in our case, since we are utilizing the Google provider, we’ll also need to create a Google web client so that we can utilize Google’s credential API. This can be done by going to the [Google Cloud console](https://console.cloud.google.com/getting-started), creating a project, and setting up a OAuth 2.0 client ID. This is where you can get the client ID and client secret variables seen above.
+
+# Integration
+
+We will now integrate NextAuth into the application itself. First, we need to declare the session provider near the root of the component tree so that we can get the user’s information in our pages. We can simply do so by placing the provider at the top level of our application.
+
+```tsx
+import { SessionProvider } from "next-auth/react";
+
+export default function App({
+    Component,
+    pageProps: { session, ...pageProps },
+}) {
+    return (
+        <SessionProvider session={session}>
+            <Component {...pageProps} />
+        </SessionProvider>
+    );
+}
+```
+
+If you are unclear of the mechanism of React that allows for the consumption of data between levels of the component hierarchy called Context, please refer to either the
+
+[useContext Hook: Another Way to Share Data](./useContext)
+
+page or the official React documentation on the topic [here](https://react.dev/learn/passing-data-deeply-with-context).
+
+Now, in any particular page or component further down in the component tree can consume this information using the `useSession()` hook. For example, a login/logout button component needs to display the appropriate text based on whether there is a currently logged in user or not.
+
+```tsx
+import { useSession, signIn, signOut } from "next-auth/react";
+
+export default function LoginButton() {
+    const { data: session } = useSession();
+
+    return (
+        <button
+            onClick={() => {
+                if (session) {
+                    signOut();
+                } else {
+                    signIn();
+                }
+            }}
+        >
+            {session ? "Sign Out" : "Sign In"}
+        </button>
+    );
+}
+```
+
+# Completed Example
+
+[https://codesandbox.io/p/sandbox/next-auth-k33q9m?file=%2Fapp%2Fpage.tsx%3A9%2C84&embed=1](https://codesandbox.io/p/sandbox/next-auth-k33q9m?file=%2Fapp%2Fpage.tsx%3A9%2C84&embed=1)
+
+That’s it! Note that we have compiled a fairly bare bones example here since in real applications of NextAuth, there are most likely a plethora of other settings you would want to change and features you’d like to include. Some of these may include, fetching session info server-side, utilizing a route protection middleware, etc.
+
+# Additional Resources
+
+-   [NextAuth Official Documentation](https://next-auth.js.org/getting-started/introduction)
