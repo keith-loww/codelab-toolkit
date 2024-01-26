@@ -1,5 +1,11 @@
 # CodeLab Toolkit
 
+<div align="center">
+
+Created with 🧡 by CodeLab Infra
+
+</div>
+
 The CodeLab toolkit is a static docs site that provides Spark developers with a guide to use common tools and patterns to build Spark applications.
 
 ## Development Setup
