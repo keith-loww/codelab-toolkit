@@ -1,9 +1,4 @@
-<div align="center">
-
-<h1>CodeLab Toolkit</h1>
-Created with 🧡 by CodeLab Infra
-
-</div>
+# CodeLab Toolkit
 
 The CodeLab toolkit is a static docs site that provides Spark developers with a guide to use common tools and patterns to build Spark applications.
 
@@ -32,3 +27,9 @@ $ npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
+
+<div align="center">
+
+Created with 🧡 by CodeLab Infra
+
+</div>
