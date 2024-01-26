@@ -15,3 +15,9 @@ slorber:
     title: Docusaurus maintainer
     url: https://sebastienlorber.com
     image_url: https://github.com/slorber.png
+
+keith:
+    name: Keith Low
+    title: VP of Infrastructure @ CodeLab
+    url: https://www.linkedin.com/in/keith-loww/
+    image_url: "https://codelab-website-images.s3.amazonaws.com/KeithLow.JPG"
