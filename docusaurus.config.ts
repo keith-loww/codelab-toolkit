@@ -121,7 +121,7 @@ const config: Config = {
                     ],
                 },
             ],
-            copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+            copyright: `Created with 🧡 by CodeLab Infra`,
         },
         prism: {
             theme: prismThemes.github,
