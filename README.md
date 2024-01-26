@@ -1,7 +1,6 @@
-# CodeLab Toolkit
-
 <div align="center">
 
+<h1>CodeLab Toolkit</h1>
 Created with 🧡 by CodeLab Infra
 
 </div>
