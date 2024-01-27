@@ -24,6 +24,7 @@ const sidebars: SidebarsConfig = {
             },
             items: [
                 "guide/async",
+                "guide/useState",
                 "guide/useEffect",
                 "guide/useContext",
                 "guide/useReducer",

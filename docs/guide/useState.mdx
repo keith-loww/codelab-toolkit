@@ -1,0 +1,100 @@
+---
+title: useState Hook
+description: A Simple Way to Handle Data
+---
+
+import Embed from "@site/src/components/Embed";
+
+# useState Hook: A Simple Way to Handle Data
+
+## Introduction
+
+`useState` is a fundamental hook in React that allows developers to manage and manipulate **state** in _functional_ components. In React, **state** refers to any data that can change over time and impacts how a component behaves. Using **state** to store your data allows it to persist between renders and trigger new renders when the data is updated.
+
+To understand how this works, let's delve into an example. Imagine you’re building a simple counter component that increments a number when a user interacts with it. This component needs to keep track of its current value. One approach could be to use a regular JavaScript variable, but this won't trigger re-renders when the value changes, and React components rely on re-renders to update the user interface.
+
+This is where `useState` comes into play. It offers a React-friendly way to handle this type of dynamic data. By using `useState`, you can declare a **state** variable that keeps track of your counter and triggers a re-render when the counter is incremented.
+
+## How to use `useState`
+
+1. Import React at the top of your JSX or TSX file.
+2. Call `useState` at the top level of your component to declare a state variable.
+
+    1. Note: Since `useState` is a hook, you **cannot** call it inside loops or conditions. If necessary, you can extract a new component and move the state into it.
+
+    ```jsx
+    function MyComponent() {
+      const [age, setAge] = React.useState(42);
+      const [name, setName] = React.useState('Taylor');
+      // ...
+    ```
+
+3. `useState` will return an array with two items:
+    1. The current state of your state variable, initially set to the state you provided.
+    2. The set function that lets you change the value of your state.
+    3. Note: The convention is to name state variables like `[something, setSomething]`
+4. To update what’s on the screen, call the _set_ function with some next state:
+
+    ```jsx
+    function handleClick() {
+        setName("Robin");
+    }
+    ```
+
+## Examples:
+
+### Basic Example
+
+```jsx
+import { useState } from "react";
+
+// Create a component that uses the context
+function MyComponent() {
+    const [clickCount, setClickCount] = useState(0);
+
+    return (
+        <Button onClick={() => setClickCount(clickCount + 1)}>
+            {clickCount}
+        </Button>
+    );
+}
+```
+
+<Embed src="https://codesandbox.io/embed/morning-bash-6wz9ly?fontsize=14&hidenavigation=1&theme=dark" />
+
+### Why a regular variable isn’t enough
+
+Notice in the below example that clicking the `Next` button doesn’t update our view. Behind the scenes, the `index` variable is actually being incremented every time the `Next` button is pressed. However, since there is no call for a re-render on our view, our component is not being updated to reflect the new value of `index`.
+
+Before moving on to the next example, try to update the code below to include a `useState` hook to call a re-render on our view!
+
+<Embed src="https://codesandbox.io/embed/usestate-nostate-2cwxsf?fontsize=14&hidenavigation=1&module=%2FApp.js&theme=dark" />
+
+### Using a state variable
+
+The below example builds off of the previous component, but instead uses a `useState` hook to re-render our component when the `Next` button is clicked. Now when we click the `Next` button, our component is re-rendered to reflect the updated value of `index` and the `sculpture` object.
+
+<Embed src="https://codesandbox.io/embed/fast-mountain-s32q2s?fontsize=14&hidenavigation=1&module=%2FApp.js&theme=dark" />
+
+### Updating arrays in state
+
+When using an array or an object in state variables, we cannot mutate the existing state directly. Since `state` in React is considered read-only, we must replace our object or array with an entirely new object or array.
+
+```jsx
+// 🚩 Don't mutate an object in state like this:
+form.firstName = "Taylor";
+```
+
+```jsx
+// ✅ Replace state with a new object
+setForm({
+    ...form,
+    firstName: "Taylor",
+});
+```
+
+<Embed src="https://codesandbox.io/embed/usestate-arrayexample-f4r6gs?fontsize=14&hidenavigation=1&theme=dark" />
+
+## Additional Resources
+
+To learn more about `useState` please refer to [the React Docs](https://react.dev/reference/react/useState).
