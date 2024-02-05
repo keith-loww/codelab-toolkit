@@ -18,16 +18,16 @@ We created the toolkit as a resource for CodeLab Spark developers to use beyond 
 
 The toolkit is a collection of pages that introduce a certain topic to the reader. There are also interactive code sandboxes that allow the reader to see the code work firsthand. The topics that are available in the toolkit on its initial release are:
 
--   [async/await](docs/guide/async)
--   [useState Hook](docs/guide/useState)
--   [useEffect Hook](docs/guide/useEffect)
--   [useContext Hook](docs/guide/useContext)
--   [useReducer Hook](docs/guide/useReducer)
--   [Conditional Rendering](docs/guide/conditional)
--   [Default Theming with Tailwind CSS](docs/guide/tailwind)
--   [Custom Hooks](docs/guide/customHooks)
--   [useMemo/useCallback Hooks](docs/guide/useMemoUseCallback)
--   [Authentication with NextAuth](docs/guide/authentication)
+-   [async/await](/docs/guide/async)
+-   [useState Hook](/docs/guide/useState)
+-   [useEffect Hook](/docs/guide/useEffect)
+-   [useContext Hook](/docs/guide/useContext)
+-   [useReducer Hook](/docs/guide/useReducer)
+-   [Conditional Rendering](/docs/guide/conditional)
+-   [Default Theming with Tailwind CSS](/docs/guide/tailwind)
+-   [Custom Hooks](/docs/guide/customHooks)
+-   [useMemo/useCallback Hooks](/docs/guide/useMemoUseCallback)
+-   [Authentication with NextAuth](/docs/guide/authentication)
 
 While we are excited about the initial release, we are even more excited about the future of the toolkit. We have plans to add more topics, and we are also looking for feedback from the community on what topics they would like to see covered.
 
@@ -39,6 +39,6 @@ And one more special mention - a big thank you to [Caden Newton](https://www.lin
 
 ## What's next?
 
--   [Read our docs!](docs/guide)
+-   [Read our docs!](/docs/guide)
 -   [Check out our GitHub](https://github.com/Codelab-Davis)
 -   [Follow our Instagram](https://www.instagram.com/codelabdavis/)
