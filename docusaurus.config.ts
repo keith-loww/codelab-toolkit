@@ -137,6 +137,13 @@ const config: Config = {
                 hideable: true,
             },
         },
+        algolia: {
+            appId: "PRQO1PLM1C",
+            apiKey: "ba586a3967497e426c756a7d50e27836",
+            indexName: "toolkit-codelabdavis",
+            contextualSearch: false,
+            searchPagePath: "search",
+        },
     } satisfies Preset.ThemeConfig,
 
     plugins: [
